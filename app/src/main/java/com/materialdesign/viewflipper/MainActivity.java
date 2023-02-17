@@ -10,25 +10,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-	private ViewFlipper view_flipper;
+	private ViewFlipper viewFlipper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		view_flipper = findViewById(R.id.view_flipper);
+		viewFlipper = findViewById(R.id.view_flipper);
 		TextView textView = new TextView(this);
 		textView.setText("Dynamically added TextView");
 		textView.setGravity(Gravity.CENTER);
-		view_flipper.addView(textView);
+		viewFlipper.addView(textView);
+
+		viewFlipper.setFlipInterval(2000);
+		viewFlipper.startFlipping();
 	}
 
 	public void previousView(View v) {
-		view_flipper.showPrevious();
+		viewFlipper.setInAnimation(this, R.anim.slide_in_right);
+		viewFlipper.setOutAnimation(this, R.anim.slide_out_left);
+		viewFlipper.showPrevious();
 	}
 
 	public void nextView(View v) {
-		view_flipper.showNext();
+		viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
+		viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
+		viewFlipper.showNext();
 	}
 }
