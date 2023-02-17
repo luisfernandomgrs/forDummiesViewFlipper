@@ -8,9 +8,12 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
 
 	private ViewFlipper viewFlipper;
+	private FloatingActionButton fabStartFlipper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
 		viewFlipper.setFlipInterval(2000);
 		viewFlipper.startFlipping();
+
+		fabStartFlipper = findViewById(R.id.fabStartFlipper);
+		fabStartFlipper.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				viewFlipper.setDisplayedChild(0);
+			}
+		});
 	}
 
 	public void previousView(View v) {
